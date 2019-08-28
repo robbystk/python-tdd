@@ -23,7 +23,7 @@ class ItemValidationTest(FunctionalTest):
         inputbox.send_keys("Buy milk")
         inputbox.send_keys(Keys.ENTER)
 
-        self.wait_for_row_in_table("1: Buy milk")
+        self.wait_for_row_in_list_table("1: Buy milk")
 
         # Perversely, she now decides to submit a second blank list item
         self.browser.find_element_by_id("id_new_item").send_keys(Keys.ENTER)
@@ -38,5 +38,5 @@ class ItemValidationTest(FunctionalTest):
         inputbox = self.browser.find_element_by_id("id_new_item")
         inputbox.send_keys("Make tea")
         inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_table("1: Buy milk")
-        self.wait_for_row_in_table("2: Make tea")
+        self.wait_for_row_in_list_table("1: Buy milk")
+        self.wait_for_row_in_list_table("2: Make tea")
