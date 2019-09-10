@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 
 from lists.models import Item, List
 
-class ListAndItemModelsTest(TestCase):
+class ItemModelTest(TestCase):
 
     def test_default_text(self):
         item = Item()
@@ -22,10 +22,6 @@ class ListAndItemModelsTest(TestCase):
         with self.assertRaises(ValidationError):
             item.save()
             item.full_clean()
-
-    def test_get_absolute_url(self):
-        list_ = List.objects.create()
-        self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
 
     def test_duplicate_items_are_invalid(self):
         list_ = List.objects.create()
@@ -55,3 +51,9 @@ class ListAndItemModelsTest(TestCase):
         list_ = List.objects.create()
         item = Item.objects.create(list=list_, text="item text")
         self.assertEqual(str(item), "item text")
+
+class ListModelTest(TestCase):
+
+    def test_get_absolute_url(self):
+        list_ = List.objects.create()
+        self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
